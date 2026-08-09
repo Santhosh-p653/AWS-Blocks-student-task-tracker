@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A beginner-friendly task manager built with React and AWS Blocks" />
+    <title>Student Task Manager</title>
+    <style>
+      /* Reset default browser margins and use border-box sizing everywhere */
+      *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
+        background-color: #f3f4f6;
+        color: #111827;
+      }
+
+      /* Make disabled buttons visually communicate that state */
+      button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      /* Smooth focus ring on input */
+      input:focus {
+        outline: 2px solid #4f46e5;
+        outline-offset: 1px;
+        border-color: #4f46e5 !important;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- React mounts the entire app inside this div -->
+    <div id="root"></div>
+
+    <!-- Vite loads our React app from here -->
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

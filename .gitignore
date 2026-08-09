@@ -1,0 +1,26 @@
+# Dependencies — install with npm install
+node_modules/
+
+# Build output
+dist/
+
+# AWS Blocks local data store (tasks saved here during dev — not source code)
+.bb-data/
+
+# AWS Blocks local runtime config (generated at startup — not source code)
+.blocks-sandbox/
+
+# AWS CDK output
+cdk.out/
+
+# Environment variables — never commit secrets
+.env
+.env.local
+
+# Editor folders
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db

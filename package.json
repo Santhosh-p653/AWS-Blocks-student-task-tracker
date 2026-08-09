@@ -1,0 +1,27 @@
+{
+  "name": "student-task-manager",
+  "version": "1.0.0",
+  "description": "A beginner-friendly task manager built with AWS Blocks and React",
+  "type": "module",
+  "scripts": {
+    "dev:server": "tsx aws-blocks/server.ts",
+    "dev:client": "vite --port 3100",
+    "dev": "concurrently -k --delay 3 \"npm:dev:server\" \"npm:dev:client\""
+  },
+  "dependencies": {
+    "@aws-blocks/blocks": "^0.1.6",
+    "@aws-blocks/core": "^0.1.17",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.1",
+    "concurrently": "^9.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.5.0",
+    "vite": "^5.4.0"
+  }
+}
