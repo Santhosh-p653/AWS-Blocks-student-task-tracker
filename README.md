@@ -57,10 +57,12 @@ Open **http://localhost:3100** in your browser.
 
 > Both terminals must stay open while you use the app.
 > Tasks are saved to `.bb-data/` locally and persist across restarts.
+<img width="1919" height="1010" alt="image" src="https://github.com/user-attachments/assets/e39d3d88-bb69-4fa7-af55-5fd4b99dece2" />
 
 ## How it works
 
 AWS Blocks runs a local backend server and gives the frontend a fully type-safe API client. The frontend calls backend functions like regular TypeScript functions — no `fetch()`, no URLs, no JSON parsing needed.
+<img width="1919" height="1068" alt="image" src="https://github.com/user-attachments/assets/4ebf684a-cbb8-4505-935f-0fefea14f541" />
 
 ```ts
 // Frontend calls this like a normal function
