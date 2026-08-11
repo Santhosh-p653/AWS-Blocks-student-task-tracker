@@ -401,5 +401,4 @@ export interface Task {
 
 ## 📄 License
 
-This project is open source and available under the [Apache-2.0 License](LICENSE).
-"# aws-blocks-event" 
+This project is open source and available under the [Apache-2.0 License](LICENSE.md).
