@@ -54,31 +54,31 @@ The following diagram illustrates how the client application interacts with the 
 ```mermaid
 flowchart TB
     subgraph Client["🖥️ Frontend Client (Browser)"]
-        UI["React 18 UI Components\n(App, TaskForm, TaskList)"]
-        ClientProxy["AWS Blocks Auto-Generated Client\n(JSON-RPC 2.0 Client Proxy)"]
-        UI -->|Type-safe function calls| ClientProxy
+        UI["React 18 UI Components<br/>App, TaskForm, TaskList"]
+        ClientProxy["AWS Blocks Client Proxy<br/>JSON-RPC 2.0"]
+        UI -->|"Type-Safe Method Call"| ClientProxy
     end
 
-    subgraph DevServer["⚡ Local Dev Server / Proxy"]
-        ViteDev["Vite Dev Server (Port 3100)\nReverse Proxy /aws-blocks/api"]
-        ClientProxy -->|HTTP POST JSON-RPC| ViteDev
+    subgraph DevServer["⚡ Local Dev Server & Proxy"]
+        ViteDev["Vite Dev Server (Port 3100)<br/>Proxy: /aws-blocks/api"]
+        ClientProxy -->|"HTTP POST JSON-RPC"| ViteDev
     end
 
     subgraph Backend["⚙️ Backend Runtime (Port 3001)"]
-        BlocksServer["AWS Blocks RPC Server\n(parseRpcRequest & Method Dispatch)"]
-        ApiNamespace["ApiNamespace ('api')\n(addTask, getTasks, updateTask, deleteTask)"]
-        ViteDev -->|Proxies Requests| BlocksServer
+        BlocksServer["AWS Blocks RPC Server<br/>parseRpcRequest & Dispatch"]
+        ApiNamespace["ApiNamespace: api<br/>addTask, getTasks, updateTask, deleteTask"]
+        ViteDev -->|"Proxy to Backend"| BlocksServer
         BlocksServer --> ApiNamespace
     end
 
     subgraph Storage["🗄️ Storage Engine"]
-        KV["KVStore (Scope: 'student-task-manager')"]
-        LocalMock[("Local File Store\n.bb-data/")]
-        DynamoDB[("AWS DynamoDB\n(Production Deployment)")]
+        KV["KVStore: tasks"]
+        LocalMock[("Local File Store<br/>.bb-data/")]
+        DynamoDB[("AWS DynamoDB<br/>Cloud Deployment")]
         
         ApiNamespace --> KV
-        KV -.->|Local Dev Mode| LocalMock
-        KV -.->|AWS Sandbox / Prod| DynamoDB
+        KV -.->|"Local Dev Mode"| LocalMock
+        KV -.->|"AWS Sandbox / Production"| DynamoDB
     end
 ```
 
@@ -91,33 +91,33 @@ AWS Blocks eliminates the manual boilerplate of managing REST endpoints, URL ser
 ```mermaid
 graph LR
     subgraph FrontendLayer["1. Presentation Layer"]
-        A["React Components\n(src/App.tsx)"]
+        A["React Components<br/>src/App.tsx"]
     end
 
     subgraph TransportLayer["2. Transport & RPC Layer"]
-        B["Generated Client Proxy\n(aws-blocks/client.js)"]
-        C["JSON-RPC 2.0 Protocol\n(POST /aws-blocks/api)"]
+        B["Generated Client Proxy<br/>aws-blocks/client.js"]
+        C["JSON-RPC 2.0 Protocol<br/>POST /aws-blocks/api"]
     end
 
     subgraph LogicLayer["3. Business Logic Layer"]
-        D["AWS Blocks Dev Server\n(aws-blocks/server.ts)"]
-        E["API Namespace Handlers\n(aws-blocks/index.ts)"]
+        D["AWS Blocks Dev Server<br/>aws-blocks/server.ts"]
+        E["API Namespace Handlers<br/>aws-blocks/index.ts"]
     end
 
     subgraph PersistenceLayer["4. Data Storage Layer"]
-        F["KVStore Block\n(Local Mock / DynamoDB)"]
+        F["KVStore Block<br/>Local Mock / DynamoDB"]
     end
 
-    A -->|await api.addTask(...) | B
-    B -->|'{ method: api.addTask, params: [...] }'| C
-    C -->|Dispatch RPC| D
-    D -->|Execute Handler| E
-    E -->|store.put(...) / store.scan()| F
-    F -->|Return Data| E
-    E -->|RPC Response Result| D
-    D -->|JSON Response| C
-    C -->|Resolve Promise| B
-    B -->|State Update| A
+    A -->|"api.addTask(title)"| B
+    B -->|"POST JSON-RPC Request"| C
+    C -->|"Dispatch Request"| D
+    D -->|"Invoke Method"| E
+    E -->|"store.put(id, task)"| F
+    F -->|"Persist Record"| E
+    E -->|"Return Result"| D
+    D -->|"HTTP 200 JSON Response"| C
+    C -->|"Resolve Promise"| B
+    B -->|"Set State & Re-render"| A
 ```
 
 ---
