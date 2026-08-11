@@ -1,26 +1,38 @@
-# Dependencies — install with npm install
+# Dependencies
 node_modules/
+.pnpm-store/
 
-# Build output
+# Build and distribution outputs
 dist/
-
-# AWS Blocks local data store (tasks saved here during dev — not source code)
-.bb-data/
-
-# AWS Blocks local runtime config (generated at startup — not source code)
-.blocks-sandbox/
-
-# AWS CDK output
+build/
 cdk.out/
 
-# Environment variables — never commit secrets
-.env
-.env.local
+# AWS Blocks local data store & runtime config
+.bb-data/
+.blocks/
+.blocks-sandbox/
+aws-blocks/client.js
 
-# Editor folders
+# Environment variables & secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor & IDE directories
 .vscode/
 .idea/
+*.swp
+*.swo
 
-# OS files
+# Operating System files
 .DS_Store
 Thumbs.db

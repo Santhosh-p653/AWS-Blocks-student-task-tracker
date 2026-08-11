@@ -7,7 +7,11 @@
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "baseUrl": ".",
+    "paths": {
+      "aws-blocks": ["./aws-blocks/index.ts"]
+    }
   },
   "include": ["src", "aws-blocks"]
 }
